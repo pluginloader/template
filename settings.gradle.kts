@@ -3,8 +3,10 @@ pluginManagement {
         mavenLocal()
         mavenCentral()
         gradlePluginPortal()
-        maven{url "https://repo.implario.dev/public"}
+        maven{url = uri("https://repo.implario.dev/public")}
     }
 }
 
-rootProject.name = 'template'
+rootProject.name = "template"
+
+include("upload")

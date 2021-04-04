@@ -1,0 +1,18 @@
+//люблю
+apply plugin: "org.hidetake.ssh"
+
+task upload{
+    dependsOn(":build")
+    doLast {
+        ssh.run {
+            session(remotes.create("host"){
+                host = System.getenv("PLU_PUSH_HOST")
+                port = System.getenv("PLU_PUSH_PORT").toInteger()
+                user = System.getenv("PLU_PUSH_USER")
+                agent = true
+            }) {
+                put from: "build/libs/${rootProject.name}.jar", into: "$p"
+            }
+        }
+    }
+}
